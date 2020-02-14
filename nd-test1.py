@@ -58,8 +58,6 @@ def main():
     simplefilter(action='ignore', category=FutureWarning)
     parser = _argparse()
 
-    key = parser.key
-
     # 定义变量
     count_list = []
     total_list = []
@@ -70,7 +68,7 @@ def main():
     with open(parser.path) as f:
         print("以下是检索结果=======================================================")
         for line in f:
-            if line.find(key) == 0:
+            if line.find(parser.key) == 0:
                 count_list.append(re.findall(r'[[](.*?)[]]', line)[0])
                 total_list.append(re.findall(r'[[](.*?)[]]', line)[1])
                 average_list.append(re.findall(r'[[](.*?)[]]', line)[2])

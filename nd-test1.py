@@ -87,7 +87,7 @@ def main():
     print("以下为统计结果=======================================================")
 
     print(
-        key + " count[{0}], total[{1}]ms, average[{2}]ms, max[{3}]ms. \n".format(
+        parser.key + " count[{0}], total[{1}]ms, average[{2}]ms, max[{3}]ms. \n".format(
             get_list_sum(count_list, len(count_list)),
             get_list_sum(total_list, len(total_list)),
             str(round(get_list_sum(

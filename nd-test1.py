@@ -79,7 +79,7 @@ def main():
                 continue
 
     if hit_number == 0:
-        print("未匹配到包含" + key + "的行...")
+        print("未匹配到包含" + parser.key + "的行...")
         exit(9999)
 
     print("一共匹配到：{}次. \n".format(hit_number))

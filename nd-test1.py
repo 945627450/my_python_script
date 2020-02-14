@@ -16,10 +16,13 @@ from warnings import simplefilter
 def _argparse():
     # 脚本参数配置
     parser = argparse.ArgumentParser(description='A Log Processor')
+    # 读取的文件路径
     parser.add_argument('-p', '--path', action='store', dest='path',
                         required=True, help='log path')
+    # 查询用key
     parser.add_argument('-k', '--key', action='store', dest='key',
                         required=True, help='match key')
+    # 是否对max进行排序
     parser.add_argument('-m', action='store_true', default=False, dest='boolean_switch', help='sort max_list and print')
     return parser.parse_args()
 

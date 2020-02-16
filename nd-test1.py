@@ -7,6 +7,7 @@
 
 
 import re
+import os
 import sys
 import argparse
 
@@ -27,6 +28,16 @@ def _argparse():
     return parser.parse_args()
 
 
+def is_here(file_path):
+    # 判断文件路径是否正确及是否可读
+    if not os.path.isfile(file_path):
+        raise SystemExit(file_path + " 路径错误，或者没有该文件，请检查.")
+    elif not os.access(file_path, os.R_OK):
+        raise SystemExit("很抱歉您没有读取权限.")
+    else:
+        pass
+
+
 def get_list_sum(list_name, size, w=1):
     # 求和
     if size == 0:
@@ -45,8 +56,6 @@ def get_list_percent(list_name, percent_num):
     # 求百分比位置下标
     m_length = len(list_name)
     m = int(round(m_length * percent_num, 0))
-    # 测试代码
-    # print(str(percent_num) + "下标为:" + str(m))
     return m
 
 
@@ -65,6 +74,7 @@ def main():
     max_list = []
     hit_number = 0
 
+    is_here(parser.path)
     with open(parser.path) as f:
         print("以下是检索结果=======================================================")
         for line in f:
@@ -79,8 +89,7 @@ def main():
                 continue
 
     if hit_number == 0:
-        print("未匹配到包含" + parser.key + "的行...")
-        exit(9999)
+        raise SystemExit("没有匹配到与 " + parser.key + " 相关的行.")
 
     print("一共匹配到：{}次. \n".format(hit_number))
 
@@ -100,11 +109,6 @@ def main():
     if parser.boolean_switch is True:
         print("以下为max升序排列结果================================================")
         max_list.sort(reverse=False)
-
-        # 测试代码
-        # print(max_list, len(max_list), max_list[1], max_list[get_list_percent(max_list, 0.01)],
-        #       max_list[get_list_percent(max_list, 0.50)], max_list[get_list_percent(max_list, 0.90)],
-        #       max_list[get_list_percent(max_list, 0.99)], max_list[-1])
 
         print("0%   = {},\n1%   = {},\n50%  = {},\n90%  = {},\n99%  = {},\n100% = {}".format(max_list[1], max_list[
             get_list_percent(max_list, 0.01)], max_list[get_list_percent(max_list, 0.50)], max_list[

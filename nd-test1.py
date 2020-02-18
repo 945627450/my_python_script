@@ -2,7 +2,7 @@
 # @Time    : 2020-02-12 23:00
 # @Author  : Embiid.Huang
 # @Email   : hzx945627450@163.com
-# @File    : nd-test1.py
+# @File    : analyzer.py
 # @Software: PyCharm
 
 
@@ -132,16 +132,24 @@ def main():
 
     print("以下为统计结果=======================================================")
 
-    print(
-        parser.key + " count[{0}], total[{1}]ms, average[{2}]ms, max[{3}]ms. \n".format(
-            get_list_sum(count_list, len(count_list)),
-            get_list_sum(total_list, len(total_list)),
-            str(round(get_list_sum(
-                total_list, len(total_list),
-                0) / get_list_sum(count_list,
-                                  len(count_list), 0),
-                      2)),
-            str(max(max_list))))
+    try:
+        print(
+            parser.key + " count[{0}], total[{1}]ms, average[{2}]ms, max[{3}]ms. \n".format(
+                get_list_sum(count_list, len(count_list)),
+                get_list_sum(total_list, len(total_list)),
+                str(round(get_list_sum(
+                    total_list, len(total_list),
+                    0) / get_list_sum(count_list,
+                                      len(count_list), 0),
+                          2)),
+                str(max(max_list))))
+    except ZeroDivisionError:
+        print("ZeroDivisionError average is null")
+        print(
+            parser.key + " count[{0}], total[{1}]ms, max[{2}]ms. \n".format(
+                get_list_sum(count_list, len(count_list)),
+                get_list_sum(total_list, len(total_list)),
+                str(max(max_list))))
 
     if parser.boolean_switch is True:
         print("以下为max升序排列结果================================================")

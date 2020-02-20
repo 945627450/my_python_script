@@ -39,7 +39,6 @@ def main():
                 print("文件名:" + line.split("\\")[-1].replace('\n', '').replace('\r', ''))
             elif re.search('^[a-fA-F0-9]{32}$', line):
                 print("MD5:" + line, end='')
-                # print("MD5:" + line)
 
 
 if __name__ == '__main__':

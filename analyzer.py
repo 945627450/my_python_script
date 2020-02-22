@@ -11,9 +11,24 @@ import sys
 import argparse
 
 from warnings import simplefilter
-from matplotlib import pyplot as plt
-from matplotlib import dates as m_date
 from datetime import datetime
+
+# 检查是否有matplotlib包 没有的话自动使用pip install安装
+try:
+    from matplotlib import pyplot as plt
+    from matplotlib import dates as m_date
+except:
+    libs = {"matplotlib"}
+    try:
+        for lib in libs:
+            print("start install {0}".format(lib))
+            os.system("pip install " + lib)
+            print("{} install successful".format(lib))
+        print("All Successful")
+        from matplotlib import pyplot as plt
+        from matplotlib import dates as m_date
+    except:
+        raise SystemExit("pip install error.")
 
 
 def _argparse():

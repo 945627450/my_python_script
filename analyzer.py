@@ -100,6 +100,7 @@ def draw_pre_time(data, etype):
     # 时间提取排序等
     # 根据etype判断返回str还是datetime
     temp = data.keys()
+    temp = list(temp)
     temp.sort()
     if etype == 0:
         return temp

@@ -17,7 +17,7 @@ from datetime import datetime
 try:
     from matplotlib import pyplot as plt
     from matplotlib import dates as m_date
-except:
+except ModuleNotFoundError:
     libs = {"matplotlib"}
     try:
         for lib in libs:
@@ -27,7 +27,7 @@ except:
         print("All Successful")
         from matplotlib import pyplot as plt
         from matplotlib import dates as m_date
-    except:
+    except Exception:
         raise SystemExit("pip install error.")
 
 
